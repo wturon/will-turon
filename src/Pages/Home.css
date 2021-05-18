@@ -28,3 +28,13 @@ p {
   /* margin-top: 300px; */
   margin-left: 200px;
 }
+
+.icon {
+  color: white;
+  padding-right: 15px;
+}
+
+.wrapper-col {
+  display: flex;
+  flex-direction: row;
+}
