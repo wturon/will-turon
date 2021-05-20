@@ -6,25 +6,31 @@ import {
   faLinkedin,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import { StyledTitle } from "../Components/StyledTitle/StyledTitle";
+
+const instagramUrl = "https://www.instagram.com/wturon/";
+const linkedInUrl = "https://www.linkedin.com/in/william-turon-763a10154/";
+const youTubeUrl = "https://www.youtube.com/channel/UCT3N8AZOsodMSsXnzojTpPA";
+
+const primaryText = "Hi, I'm";
+const emphasizedPrimaryText = "Will!";
+const secondaryText =
+  "I'm a software developer, photographer, designer, and photoshopping enthusiast. This website is a pet project I started to learn more about the technologies I use day to day asa cloud engineer.";
 
 export const Home = (): JSX.Element => {
   return (
     <div>
-      <div className="container">
-        <div className="flex-col full-height">
-          <div className="flex-row">
-            <div className="vertical-line" />
-            <div className="title-group">
-              <h1>
-                Hi, I'm <span className="gradient-text">Will.</span>
-              </h1>
-              <p>
-                I'm a Software developer, photographer, and photoshopping
-                enthusiast. I made this website.
-              </p>
-              <div className="wrapper-col">
+      <div className="background">
+        <div className="max-height flex-col">
+          <div className="content-group flex-row">
+            <StyledTitle
+              primaryText={primaryText}
+              emphasizedPrimaryText={emphasizedPrimaryText}
+              secondaryText={secondaryText}
+            >
+              <div className="flex-row">
                 <a
-                  href="https://www.instagram.com/wturon/"
+                  href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -34,22 +40,14 @@ export const Home = (): JSX.Element => {
                     icon={faInstagramSquare}
                   />
                 </a>
-                <a
-                  href="https://www.linkedin.com/in/william-turon-763a10154/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon
                     className="icon"
                     size="2x"
                     icon={faLinkedin}
                   />
                 </a>
-                <a
-                  href="https://www.youtube.com/channel/UCT3N8AZOsodMSsXnzojTpPA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon
                     className="icon"
                     size="2x"
@@ -57,7 +55,7 @@ export const Home = (): JSX.Element => {
                   />
                 </a>
               </div>
-            </div>
+            </StyledTitle>
           </div>
         </div>
       </div>
