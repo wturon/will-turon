@@ -15,7 +15,7 @@ const youTubeUrl = "https://www.youtube.com/channel/UCT3N8AZOsodMSsXnzojTpPA";
 const primaryText = "Hi, I'm";
 const emphasizedPrimaryText = "Will!";
 const secondaryText =
-  "I'm a software developer, photographer, designer, and photoshopping enthusiast. This website is a pet project I started to learn more about the technologies I use day to day asa cloud engineer.";
+  "I'm a software developer, photographer, designer, and photoshopping enthusiast. This website is a project I started to learn more about the technologies I use as a cloud engineer.";
 
 export const Home = (): JSX.Element => {
   return (
