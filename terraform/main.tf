@@ -16,11 +16,11 @@ data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "tf-wt-rg" {
   name     = "tf-wt-rg"
-  location = "West Europe"
+  location = "eastus"
 }
 
 resource "azurerm_app_service_plan" "wt-appservice" {
-  name                = "wt-appserviceplan"
+  name                = "willturon"
   location            = azurerm_resource_group.tf-wt-rg.location
   resource_group_name = azurerm_resource_group.tf-wt-rg.name
   kind                = "Linux"
