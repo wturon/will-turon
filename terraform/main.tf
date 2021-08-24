@@ -20,7 +20,7 @@ resource "azurerm_resource_group" "tf-wt-rg" {
 }
 
 resource "azurerm_app_service_plan" "wt-appservice" {
-  name                = "willturon"
+  name                = "wt-appservice"
   location            = azurerm_resource_group.tf-wt-rg.location
   resource_group_name = azurerm_resource_group.tf-wt-rg.name
   kind                = "Linux"
@@ -33,7 +33,7 @@ resource "azurerm_app_service_plan" "wt-appservice" {
 }
 
 resource "azurerm_app_service" "will-turon-app-service" {
-  name                = "will-turon-app-service"
+  name                = "willturon"
   location            = azurerm_resource_group.tf-wt-rg.location
   resource_group_name = azurerm_resource_group.tf-wt-rg.name
   app_service_plan_id = azurerm_app_service_plan.wt-appservice.id
