@@ -3,11 +3,7 @@ name: "InfraDeploy"
 on:
   push:
     branches: [main]
-    paths:
-      - "/infra/*"
-      - "/.github/workflows/terraform.yml"
   pull_request:
-    types: [closed]
     branches: [main]
     paths:
       - "/infra/*"
