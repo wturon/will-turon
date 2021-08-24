@@ -35,6 +35,8 @@ resource "azurerm_app_service" "will-turon-app-service" {
   location            = azurerm_resource_group.tf-wt-rg.location
   resource_group_name = azurerm_resource_group.tf-wt-rg.name
   app_service_plan_id = azurerm_app_service_plan.wt-appservice.id
+  kind                = "Linux"
+  reserved            = true
 
   site_config {
     linux_fx_version = "NODE|12-lts"
