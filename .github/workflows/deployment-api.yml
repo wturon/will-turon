@@ -35,7 +35,9 @@ jobs:
       - name: Zip Folder
         run: zip -r api/api.zip ./api
       - name: Check for Zip
-        run: ls
+        run: |
+          cd api
+          ls
         
       - uses: azure/webapps-deploy@v2
         with:
