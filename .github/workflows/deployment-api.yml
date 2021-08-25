@@ -5,7 +5,7 @@ on:
 
 env:
   NODE_VERSION: "12.x"
-  AZURE_WEBAPP_PACKAGE_PATH: "./api/build"
+  AZURE_WEBAPP_PACKAGE_PATH: "./api/api.zip"
   AZURE_WEBAPP_NAME: willturon-api
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
           cd ..
 
       - name: Zip Folder
-        run: zip -r api/release.zip ./api
+        run: zip -r api/api.zip ./api
       - name: Check for Zip
         run: ls -l | grep .zip
 
