@@ -35,8 +35,8 @@ jobs:
       - name: Zip Folder
         run: zip -r api/api.zip ./api
       - name: Check for Zip
-        run: ls -l | grep .zip
-
+        run: ls
+        
       - uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
