@@ -5,7 +5,7 @@ on:
 
 env:
   NODE_VERSION: "12.x"
-  AZURE_WEBAPP_PACKAGE_PATH: "./api/api.zip"
+  AZURE_WEBAPP_PACKAGE_PATH: "./api/build"
   AZURE_WEBAPP_NAME: willturon-api
 
 jobs:
@@ -31,8 +31,11 @@ jobs:
           cd api
           npm install
           cd ..
-          zip -r api/api.zip ./api
-          ls -l | grep .zip
+
+      - name: Zip Folder
+        run: zip -r api/release.zip ./api
+      - name: Release to Github
+        run: echo "Release"
 
       - uses: azure/webapps-deploy@v2
         with:
