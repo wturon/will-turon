@@ -32,6 +32,7 @@ jobs:
           npm install
           cd ..
           zip -r api/api.zip ./api
+          ls -l | grep .zip
 
       - uses: azure/webapps-deploy@v2
         with:
