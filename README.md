@@ -3,15 +3,19 @@
 Before the `terraform.yml` pipeline can run there needs to be a service principle and a storage account provisioned. The storage account will hold the terraform remote state and the service principle will allow terraform to make changes to your Azure sub.
 
 The resource group that will hold the tf state
+
 `az group create -n tfstate-rg -l eastus2`
 
 Storage account creation
+
 `az storage account create -n willturontfstate -g tfstate-rg -l eastus2 --sku Standard_LRS`
 
 Container creation
+
 `az storage container create --account-name willturontfstate -n tfstatedevops`
 
 service principal creation
+
 `az ad sp create-for-rbac --name willturontf2`
 
 ## Available Scripts
