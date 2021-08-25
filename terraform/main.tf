@@ -57,5 +57,4 @@ resource "azurerm_app_service" "will-turon-app-service-api" {
   site_config {
     linux_fx_version = "NODE|12-lts"
   }
-
 }
