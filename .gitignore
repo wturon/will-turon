@@ -7,9 +7,11 @@
 
 # testing
 /coverage
+/web/coverage
 
 # production
 /build
+/web/build
 
 # misc
 .DS_Store
@@ -18,9 +20,9 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
 
 # Local .terraform directories
 **/.terraform/*
