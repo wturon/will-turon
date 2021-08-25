@@ -5,7 +5,7 @@ on:
 
 env:
   NODE_VERSION: "12.x"
-  AZURE_WEBAPP_PACKAGE_PATH: "./api/build"
+  AZURE_WEBAPP_PACKAGE_PATH: "./api/api.zip"
   AZURE_WEBAPP_NAME: willturon-api
 
 jobs:
