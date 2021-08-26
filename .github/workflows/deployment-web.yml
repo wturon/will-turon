@@ -1,6 +1,11 @@
 name: deployment
 
 on:
+  pull_request:
+      types: [closed]
+      branches: [main]
+      paths:
+        - './web'
   workflow_dispatch:
 
 env:
