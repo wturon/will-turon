@@ -35,7 +35,7 @@ jobs:
       - name: React App Settings Variable Substitution
         run: |
           # Find and Replace using SED on Index
-          cd build
+          cd web/build
           sed -i 's|%SUBAPIURI%|${{ secrets.API_URI }}|g' index.html
 
       - uses: azure/webapps-deploy@v2
