@@ -1,62 +1,61 @@
-# Infrastructure
+# Personal Website
 
-Before the `terraform.yml` pipeline can run there needs to be a service principle and a storage account provisioned. The storage account will hold the terraform remote state and the service principle will allow terraform to make changes to your Azure sub.
+## Github Secrets
 
-The resource group that will hold the tf state
+These are the secrets that need to be defined before the pipelines will run succesfully. Navigate to your preferred repo. Settings > Secrets.
 
-`az group create -n tfstate-rg -l eastus2`
+Start by running the following command to create a service principal and using the output for the values of secrets 1 through 4.
 
-Storage account creation
-
-`az storage account create -n willturontfstate -g tfstate-rg -l eastus2 --sku Standard_LRS`
-
-Container creation
-
-`az storage container create --account-name willturontfstate -n tfstatedevops`
-
-service principal creation
+_Note that this SP will have contributer level access to your entire subscription..._
 
 `az ad sp create-for-rbac --name willturontf2`
 
-## Available Scripts
+1. **AZURE_AD_CLIENT_ID**
 
-In the project directory, you can run:
+   Used in `InfraDeploy.yml` for terraform
 
-### `yarn start`
+2. **AZURE_AD_CLIENT_SECRET**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   Used in `InfraDeploy.yml` for terraform
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. **AZURE_AD_TENANT_ID**
 
-### `yarn test`
+   Used in `InfraDeploy.yml` for terraform
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **AZURE_SUBSCRIPTION_ID**
 
-### `yarn build`
+   Used in `InfraDeploy.yml` for terraform
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. **API_URI**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Define the name of the base URI for your API. Unless otherwise specified this will be
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   > API_APP_SERVICE_NAME.azurewebsites.net
 
-### `yarn eject`
+   This will be referenced in the `deployment-web.yml` and injected into the react app's `index.html` file
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+6. **AZURE_CREDENTIALS**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   Used for `azure/login@v1` action in the deployment pipelines. The contents of this secret should be the entire output of the following command
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   `az ad sp create-for-rbac --name "deploymentSP" --role contributor --scopes /subscriptions/<YOUR_SUBSCRIPTION_ID> --sdk-auth`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   Yeah I'm aware this seems redundant. I'm pretty sure you can use the same service principal for terraform and `azure/login@v1`.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Infrastructure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Before the `terraform.yml` pipeline can run there needs to be a storage account provisioned to hold the terraform remote state.
+
+1. **Create a resource group that will hold the storage account**
+
+   `az group create -n tfstate-rg -l eastus2`
+
+2. **Create the storage account**
+
+   `az storage account create -n willturontfstate -g tfstate-rg -l eastus2 --sku Standard_LRS`
+
+3. **Create your container**
+
+   `az storage container create --account-name willturontfstate -n tfstatedevops`
