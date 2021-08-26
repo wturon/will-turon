@@ -2,9 +2,12 @@ name: ci-build-web
 
 on:
   push:
-    branches: [feature/**]
+    paths:
+      - 'web/**'
   pull_request:
-    branches: [feature/**]
+    branches: [main]
+    paths:
+      - 'web/**'
 
   workflow_dispatch:
 
