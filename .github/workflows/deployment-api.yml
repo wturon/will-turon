@@ -1,6 +1,11 @@
 name: deployment-api
 
 on:
+  pull_request:
+      types: [closed]
+      branches: [main]
+      paths:
+        - './api'
   workflow_dispatch:
 
 env:
