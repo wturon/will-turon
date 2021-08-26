@@ -1,6 +1,17 @@
 name: "InfraDeploy"
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '/terraform/*'
+      - '/.github/workflows/InfraDeploy.yml'
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - '/terraform/*'
+      - '/.github/workflows/InfraDeploy.yml'
   workflow_dispatch:
 
 jobs:
