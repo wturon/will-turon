@@ -1,15 +1,8 @@
-import axios from "axios";
-
-const BASE_URL = "http://localhost:8080";
+import http from "../Services/http-common";
 
 export const getBoardData = async () => {
-  return await axios
-    .get(`${BASE_URL}/boards`, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-      },
-    })
+  return await http
+    .get(`/boards`)
     .then((response) => {
       return response.data;
     })

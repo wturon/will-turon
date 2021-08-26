@@ -32,6 +32,12 @@ jobs:
           npm install
           npm run build --if-present
 
+      - name: React App Settings Variable Substitution
+        run: |
+          # Find and Replace using SED on Index
+          cd build
+          sed -i 's|%SUBAPIURI%|${{ secrets.API_URI }}|g' index.html
+
       - uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
