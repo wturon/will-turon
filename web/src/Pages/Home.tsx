@@ -66,6 +66,7 @@ const HomeContainer = styled.div`
   display: flex;
   align-items: center;
   padding-left: 5%;
+  box-sizing: border-box;
 `;
 
 const IconGroup = styled.div`
