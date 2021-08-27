@@ -34,7 +34,10 @@ const VerticalLine = styled.div`
   height: auto;
   margin-top: 18px;
   width: 3px;
-  background-image: linear-gradient(#c850c0, #ffcc70);
+  background-image: linear-gradient(
+    ${(props) => props.theme.gradient.primary},
+    ${(props) => props.theme.gradient.secondary}
+  );
 `;
 
 const TitleGroup = styled.div`
@@ -45,7 +48,10 @@ const TitleGroup = styled.div`
 `;
 
 const GradientText = styled.span`
-  background-image: linear-gradient(45deg, #c850c0, #ffcc70);
+  background-image: linear-gradient(
+    ${(props) => props.theme.gradient.primary},
+    ${(props) => props.theme.gradient.secondary}
+  );
   background-size: 100%;
   background-repeat: repeat;
 
