@@ -2,10 +2,8 @@ name: ci-build-web
 
 on:
   push:
-    paths:
-      - 'web/**'
-  pull_request:
-    branches: [main]
+    branches:
+      - main
     paths:
       - 'web/**'
 
