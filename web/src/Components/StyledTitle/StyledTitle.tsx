@@ -46,6 +46,19 @@ const TitleGroup = styled.div`
   flex-direction: column;
   margin-left: 20px;
   max-width: 500px;
+
+  & h1 {
+    font-size: xx-large;
+    color: white;
+    font-size: 50px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  & p {
+    margin-top: 5px;
+    color: #c2c2c2;
+  }
 `;
 
 const GradientText = styled.span`

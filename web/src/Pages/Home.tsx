@@ -16,7 +16,7 @@ const youTubeUrl = "https://www.youtube.com/channel/UCT3N8AZOsodMSsXnzojTpPA";
 
 const primaryText = "Hi, I'm";
 const emphasizedPrimaryText = "Will!";
-const secondaryText = `I'm a software developer, photographer, designer, and photoshopping enthusiast.`;
+const secondaryText = `I'm a software developer, photographer, designer, and photoshopping enthusiast. I made this website.`;
 
 export const Home = (): JSX.Element => {
   useEffect(() => {
@@ -60,7 +60,6 @@ export const Home = (): JSX.Element => {
                 />
               </a>
             </IconGroup>
-            <div style={{ color: "white", marginTop: "10px" }}>Mileage:</div>
           </StyledTitle>
         </HomeContainer>
       </BackgroundImage>
