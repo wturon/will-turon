@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { Router } from "./Routing/Router";
+import { theme } from "./Theme/theme";
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -7,9 +8,11 @@ const AppWrapper = styled.div`
 
 function App() {
   return (
-    <AppWrapper>
-      <Router />
-    </AppWrapper>
+    <ThemeProvider theme={theme}>
+      <AppWrapper>
+        <Router />
+      </AppWrapper>
+    </ThemeProvider>
   );
 }
 
