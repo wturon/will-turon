@@ -35,6 +35,7 @@ const VerticalLine = styled.div`
   margin-top: 18px;
   width: 3px;
   background-image: linear-gradient(
+    45deg,
     ${(props) => props.theme.gradient.primary},
     ${(props) => props.theme.gradient.secondary}
   );
@@ -49,6 +50,7 @@ const TitleGroup = styled.div`
 
 const GradientText = styled.span`
   background-image: linear-gradient(
+    45deg,
     ${(props) => props.theme.gradient.primary},
     ${(props) => props.theme.gradient.secondary}
   );

@@ -1,7 +1,7 @@
-export const PURPLE = "#c850c0";
-export const LIGHT_ORANGE = "#ffcc70";
+const PRIMARY_PURPLE = "#c850c0";
+const SECONDARY_ORANGE = "#ffcc70";
 
-export type Theme = {
+type Theme = {
   name: string;
   gradient: {
     primary: string;
@@ -12,7 +12,7 @@ export type Theme = {
 export const theme = (): Theme => ({
   name: "Main Theme",
   gradient: {
-    primary: PURPLE,
-    secondary: LIGHT_ORANGE,
+    primary: PRIMARY_PURPLE,
+    secondary: SECONDARY_ORANGE,
   },
 });
