@@ -1,5 +1,5 @@
 import React from "react";
-import "./StyledTitle.css";
+import styled from "styled-components";
 
 type StyledTitleProps = {
   primaryText: String;
@@ -13,16 +13,45 @@ export const StyledTitle = ({
   children,
 }: StyledTitleProps): JSX.Element => {
   return (
-    <div className="flex-row">
-      <div className="vertical-line" />
-      <div className="title-group">
+    <StyledContainer>
+      <VerticalLine />
+      <TitleGroup>
         <h1>
-          {primaryText}{" "}
-          <span className="gradient-text">{emphasizedPrimaryText}</span>
+          {primaryText} <GradientText>{emphasizedPrimaryText}</GradientText>
         </h1>
         <p>{secondaryText}</p>
         {children}
-      </div>
-    </div>
+      </TitleGroup>
+    </StyledContainer>
   );
 };
+
+const StyledContainer = styled.div`
+  display: flex;
+`;
+
+const VerticalLine = styled.div`
+  height: auto;
+  margin-top: 18px;
+  width: 3px;
+  background-image: linear-gradient(#c850c0, #ffcc70);
+`;
+
+const TitleGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  max-width: 500px;
+`;
+
+const GradientText = styled.span`
+  background-image: linear-gradient(45deg, #c850c0, #ffcc70);
+  background-size: 100%;
+  background-repeat: repeat;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+`;

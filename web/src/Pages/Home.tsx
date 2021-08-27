@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./Home.css";
 import img from "../Assets/images/bg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -27,36 +26,45 @@ export const Home = (): JSX.Element => {
   }, []);
 
   return (
-    <BackgroundImage>
-      <HomeContainer>
-        <StyledTitle
-          primaryText={primaryText}
-          emphasizedPrimaryText={emphasizedPrimaryText}
-          secondaryText={secondaryText}
-        >
-          <IconGroup>
-            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon
-                className="icon"
-                size="2x"
-                icon={faInstagramSquare}
-              />
-            </a>
-            <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon className="icon" size="2x" icon={faLinkedin} />
-            </a>
-            <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon
-                className="icon"
-                size="2x"
-                icon={faYoutubeSquare}
-              />
-            </a>
-          </IconGroup>
-          <div style={{ color: "white", marginTop: "10px" }}>Mileage:</div>
-        </StyledTitle>
-      </HomeContainer>
-    </BackgroundImage>
+    <>
+      <BackgroundImage>
+        <HomeContainer>
+          <StyledTitle
+            primaryText={primaryText}
+            emphasizedPrimaryText={emphasizedPrimaryText}
+            secondaryText={secondaryText}
+          >
+            <IconGroup>
+              <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+                <StyledIcon
+                  className="icon"
+                  color="white"
+                  size="2x"
+                  icon={faInstagramSquare}
+                />
+              </a>
+              <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
+                <StyledIcon
+                  className="icon"
+                  color="white"
+                  size="2x"
+                  icon={faLinkedin}
+                />
+              </a>
+              <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
+                <StyledIcon
+                  className="icon"
+                  color="white"
+                  size="2x"
+                  icon={faYoutubeSquare}
+                />
+              </a>
+            </IconGroup>
+            <div style={{ color: "white", marginTop: "10px" }}>Mileage:</div>
+          </StyledTitle>
+        </HomeContainer>
+      </BackgroundImage>
+    </>
   );
 };
 
@@ -78,4 +86,8 @@ const HomeContainer = styled.div`
 
 const IconGroup = styled.div`
   display: flex;
+`;
+
+const StyledIcon = styled(FontAwesomeIcon)`
+  padding-right: 15px;
 `;
