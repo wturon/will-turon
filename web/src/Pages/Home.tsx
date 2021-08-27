@@ -34,7 +34,7 @@ export const Home = (): JSX.Element => {
           emphasizedPrimaryText={emphasizedPrimaryText}
           secondaryText={secondaryText}
         >
-          <div className="flex-row">
+          <IconGroup>
             <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon
                 className="icon"
@@ -52,7 +52,7 @@ export const Home = (): JSX.Element => {
                 icon={faYoutubeSquare}
               />
             </a>
-          </div>
+          </IconGroup>
           <div style={{ color: "white", marginTop: "10px" }}>Mileage:</div>
         </StyledTitle>
       </HomeContainer>
@@ -73,4 +73,9 @@ const HomeContainer = styled.div`
   width: 100vw;
   display: flex;
   align-items: center;
+  padding-left: 5%;
+`;
+
+const IconGroup = styled.div`
+  display: flex;
 `;
