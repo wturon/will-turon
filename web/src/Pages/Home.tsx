@@ -16,7 +16,7 @@ const youTubeUrl = "https://www.youtube.com/channel/UCT3N8AZOsodMSsXnzojTpPA";
 
 const primaryText = "Hi, I'm";
 const emphasizedPrimaryText = "Will!";
-const secondaryText = `I'm a software developer, photographer, designer, and photoshopping enthusiast. I made this website.`;
+const secondaryText = `I'm a software developer, photographer, and photoshopping enthusiast. I made this website. Still largely a work in progress.`;
 
 export const Home = (): JSX.Element => {
   useEffect(() => {
@@ -36,28 +36,13 @@ export const Home = (): JSX.Element => {
           >
             <IconGroup>
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon
-                  className="icon"
-                  color="white"
-                  size="2x"
-                  icon={faInstagramSquare}
-                />
+                <StyledIcon color="white" size="2x" icon={faInstagramSquare} />
               </a>
               <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon
-                  className="icon"
-                  color="white"
-                  size="2x"
-                  icon={faLinkedin}
-                />
+                <StyledIcon color="white" size="2x" icon={faLinkedin} />
               </a>
               <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon
-                  className="icon"
-                  color="white"
-                  size="2x"
-                  icon={faYoutubeSquare}
-                />
+                <StyledIcon color="white" size="2x" icon={faYoutubeSquare} />
               </a>
             </IconGroup>
           </StyledTitle>
