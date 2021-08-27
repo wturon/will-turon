@@ -16,7 +16,7 @@ const youTubeUrl = "https://www.youtube.com/channel/UCT3N8AZOsodMSsXnzojTpPA";
 
 const primaryText = "Hi, I'm";
 const emphasizedPrimaryText = "Will!";
-const secondaryText = `I'm a software developer, photographer, and photoshopping enthusiast. I made this website. Still largely a work in progress. TEST TEXT`;
+const secondaryText = `I'm a software developer, photographer, and photoshopping enthusiast. I made this website. Still largely a work in progress.`;
 
 export const Home = (): JSX.Element => {
   useEffect(() => {
