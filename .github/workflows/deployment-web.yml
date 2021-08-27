@@ -7,9 +7,6 @@ on:
         - main
       paths:
         - './web/**'
-  push:
-    paths:
-      - 'web/**'
   workflow_dispatch:
 
 env:
