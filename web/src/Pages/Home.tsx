@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./Home.css";
+import img from "../Assets/images/bg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagramSquare,
@@ -8,6 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { StyledTitle } from "../Components/StyledTitle/StyledTitle";
 import { getBoardData } from "./HomeService";
+import styled from "styled-components";
 
 const instagramUrl = "https://www.instagram.com/wturon/";
 const linkedInUrl = "https://www.linkedin.com/in/william-turon-763a10154/";
@@ -25,47 +27,50 @@ export const Home = (): JSX.Element => {
   }, []);
 
   return (
-    <div>
-      <div className="background">
-        <div className="max-height flex-col">
-          <div className="content-group flex-row">
-            <StyledTitle
-              primaryText={primaryText}
-              emphasizedPrimaryText={emphasizedPrimaryText}
-              secondaryText={secondaryText}
-            >
-              <div className="flex-row">
-                <a
-                  href={instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FontAwesomeIcon
-                    className="icon"
-                    size="2x"
-                    icon={faInstagramSquare}
-                  />
-                </a>
-                <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon
-                    className="icon"
-                    size="2x"
-                    icon={faLinkedin}
-                  />
-                </a>
-                <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon
-                    className="icon"
-                    size="2x"
-                    icon={faYoutubeSquare}
-                  />
-                </a>
-              </div>
-              <div style={{ color: "white", marginTop: "10px" }}>Mileage:</div>
-            </StyledTitle>
+    <BackgroundImage>
+      <HomeContainer>
+        <StyledTitle
+          primaryText={primaryText}
+          emphasizedPrimaryText={emphasizedPrimaryText}
+          secondaryText={secondaryText}
+        >
+          <div className="flex-row">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon
+                className="icon"
+                size="2x"
+                icon={faInstagramSquare}
+              />
+            </a>
+            <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon className="icon" size="2x" icon={faLinkedin} />
+            </a>
+            <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon
+                className="icon"
+                size="2x"
+                icon={faYoutubeSquare}
+              />
+            </a>
           </div>
-        </div>
-      </div>
-    </div>
+          <div style={{ color: "white", marginTop: "10px" }}>Mileage:</div>
+        </StyledTitle>
+      </HomeContainer>
+    </BackgroundImage>
   );
 };
+
+const BackgroundImage = styled.div`
+  background: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0)),
+    url(${img}) no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+`;
+
+const HomeContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+`;
