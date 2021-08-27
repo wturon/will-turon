@@ -3,9 +3,13 @@ name: deployment-web
 on:
   pull_request:
       types: [closed]
-      branches: [main]
+      branches: 
+        - main
       paths:
         - './web/**'
+  push:
+    paths:
+      - 'web/**'
   workflow_dispatch:
 
 env:
