@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import styled from "styled-components";
-import img from "../../../Assets/images/bg.jpg";
+import { getImages } from "./GalleryService";
 
 export const pictures = [
   {
     name: "1",
+    imageUri: "https://wttest.blob.core.windows.net/images/KaiArt.jpg",
   },
   {
     name: "2",
@@ -31,13 +33,23 @@ export const pictures = [
   },
 ];
 
-export const GalleryPage = () => (
-  <GalleryContainer>
-    {pictures.map((picture) => (
-      <GalleryImage>{picture.name}</GalleryImage>
-    ))}
-  </GalleryContainer>
-);
+export const GalleryPage = () => {
+  useEffect(() => {
+    getImages().then((res) => console.log(res));
+  }, []);
+
+  return (
+    <Background>
+      <GalleryContainer>
+        {pictures.map((picture) => (
+          <GalleryImage imageUri={picture.imageUri ?? "img"}>
+            {picture.name}
+          </GalleryImage>
+        ))}
+      </GalleryContainer>
+    </Background>
+  );
+};
 
 const GalleryContainer = styled.div`
   margin-left: 25px;
@@ -48,9 +60,18 @@ const GalleryContainer = styled.div`
   grid-gap: 25px;
 `;
 
-const GalleryImage = styled.div`
+export type GalleryImageProps = {
+  imageUri: string;
+};
+
+const GalleryImage = styled.div<GalleryImageProps>`
   height: auto;
   width: 100%;
-  background-color: grey;
-  content: url(${img});
+  content: url(${(props) => props.imageUri});
+`;
+
+const Background = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: #2f3542;
 `;
