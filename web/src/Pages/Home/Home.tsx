@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import img from "../Assets/images/bg.jpg";
+import img from "../../Assets/images/bg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagramSquare,
   faLinkedin,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { StyledTitle } from "../Components/StyledTitle/StyledTitle";
-import { getBoardData } from "./HomeService";
+import { StyledTitle } from "../../Components/StyledTitle/StyledTitle";
 import styled from "styled-components";
 
 const instagramUrl = "https://www.instagram.com/wturon/";
@@ -19,12 +17,6 @@ const emphasizedPrimaryText = "Will!";
 const secondaryText = `I'm a software developer, photographer, and photoshopping enthusiast. I made this website.`;
 
 export const Home = (): JSX.Element => {
-  useEffect(() => {
-    getBoardData()
-      .then((response) => console.log(response))
-      .then(() => console.log("done"));
-  }, []);
-
   return (
     <>
       <BackgroundImage>
