@@ -9,7 +9,6 @@ const {
   BlobServiceClient,
   StorageSharedKeyCredential,
 } = require("@azure/storage-blob");
-const { v1: uuidv1 } = require("uuid");
 
 const listBlob = async () => {
   const account = "wttest";
@@ -26,9 +25,11 @@ const listBlob = async () => {
   const containerClient = blobServiceClient.getContainerClient("images");
   // List the blob(s) in the container.
   let blobsArray = [];
-  for await (const blob of containerClient.listBlobsByHierarchy("/")) {
-    blobsArray.push(blob);
+  for await (const blob of containerClient.listBlobsFlat()) {
+    const blockBlobClient = containerClient.getBlockBlobClient(blob.name);
+    blobsArray.push({ name: blockBlobClient.name, url: blockBlobClient.url });
   }
+  console.log(blobsArray);
   return blobsArray;
 };
 
@@ -38,7 +39,6 @@ app.get("/images", (req, res) => {
       res.status(200).send(response);
     })
     .catch((ex) => console.log(ex.message));
-  console.log("\nListing blobs...");
 });
 
 app.listen(PORT, () =>

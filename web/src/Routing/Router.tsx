@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch } from "react-router-dom";
-import { GalleryPage } from "../Pages/Home/Gallery/GalleryPage";
+import { GalleryPage } from "../Pages/Gallery/GalleryPage";
 import { Home } from "../Pages/Home/Home";
 import { RouteWrapper } from "./RouteWrapper";
 
