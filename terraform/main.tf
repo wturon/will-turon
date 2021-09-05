@@ -58,3 +58,17 @@ resource "azurerm_app_service" "will-turon-app-service-api" {
     linux_fx_version = "NODE|12-lts"
   }
 }
+
+resource "azurerm_storage_account" "wt-storage-account" {
+  name                     = "wtstorageaccount"
+  resource_group_name      = azurerm_resource_group.tf-wt-rg.name
+  location                 = azurerm_resource_group.tf-wt-rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "images" {
+  name                  = "images"
+  storage_account_name  = azurerm_storage_account.wt-storage-account.name
+  container_access_type = "container"
+}

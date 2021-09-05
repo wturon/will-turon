@@ -1,4 +1,4 @@
-import http from "../Services/http-common";
+import http from "../../Services/http-common";
 
 export const getBoardData = async () => {
   return await http

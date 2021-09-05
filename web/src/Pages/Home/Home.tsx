@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import img from "../Assets/images/bg.jpg";
+import img from "../../Assets/images/bg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagramSquare,
   faLinkedin,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { StyledTitle } from "../Components/StyledTitle/StyledTitle";
-import { getBoardData } from "./HomeService";
 import styled from "styled-components";
+import { StyledTitle } from "../../Components/StyledTitle";
 
 const instagramUrl = "https://www.instagram.com/wturon/";
 const linkedInUrl = "https://www.linkedin.com/in/william-turon-763a10154/";
@@ -19,12 +17,6 @@ const emphasizedPrimaryText = "Will!";
 const secondaryText = `I'm a software developer, photographer, and photoshopping enthusiast. I made this website.`;
 
 export const Home = (): JSX.Element => {
-  useEffect(() => {
-    getBoardData()
-      .then((response) => console.log(response))
-      .then(() => console.log("done"));
-  }, []);
-
   return (
     <>
       <BackgroundImage>
@@ -36,13 +28,13 @@ export const Home = (): JSX.Element => {
           >
             <IconGroup>
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon color="white" size="2x" icon={faInstagramSquare} />
+                <StyledIcon color="white" size="3x" icon={faInstagramSquare} />
               </a>
               <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon color="white" size="2x" icon={faLinkedin} />
+                <StyledIcon color="white" size="3x" icon={faLinkedin} />
               </a>
               <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon color="white" size="2x" icon={faYoutubeSquare} />
+                <StyledIcon color="white" size="3x" icon={faYoutubeSquare} />
               </a>
             </IconGroup>
           </StyledTitle>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Typography } from "./Typography";
 
 type StyledTitleProps = {
   primaryText: String;
@@ -16,15 +17,21 @@ export const StyledTitle = ({
     <StyledContainer>
       <VerticalLine />
       <TitleGroup>
-        <h1>
+        <Typography size={"h1"} weight={"bold"}>
           {primaryText} <GradientText>{emphasizedPrimaryText}</GradientText>
-        </h1>
-        <p>{secondaryText}</p>
-        {children}
+        </Typography>
+        <Typography color={"secondary"} size={"p1"} weight={"normal"}>
+          {secondaryText}
+        </Typography>
+        <StyledChildren>{children}</StyledChildren>
       </TitleGroup>
     </StyledContainer>
   );
 };
+
+const StyledChildren = styled.div`
+  margin-top: 1rem;
+`;
 
 const StyledContainer = styled.div`
   display: flex;
@@ -46,19 +53,7 @@ const TitleGroup = styled.div`
   flex-direction: column;
   margin-left: 20px;
   max-width: 500px;
-
-  & h1 {
-    font-size: xx-large;
-    color: white;
-    font-size: 50px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-  }
-
-  & p {
-    margin-top: 5px;
-    color: #c2c2c2;
-  }
+  color: ${(props) => props.theme.text.primary};
 `;
 
 const GradientText = styled.span`
