@@ -5,8 +5,8 @@ import {
   faLinkedin,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { StyledTitle } from "../../Components/StyledTitle/StyledTitle";
 import styled from "styled-components";
+import { StyledTitle } from "../../Components/StyledTitle";
 
 const instagramUrl = "https://www.instagram.com/wturon/";
 const linkedInUrl = "https://www.linkedin.com/in/william-turon-763a10154/";
@@ -28,13 +28,13 @@ export const Home = (): JSX.Element => {
           >
             <IconGroup>
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon color="white" size="2x" icon={faInstagramSquare} />
+                <StyledIcon color="white" size="3x" icon={faInstagramSquare} />
               </a>
               <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon color="white" size="2x" icon={faLinkedin} />
+                <StyledIcon color="white" size="3x" icon={faLinkedin} />
               </a>
               <a href={youTubeUrl} target="_blank" rel="noopener noreferrer">
-                <StyledIcon color="white" size="2x" icon={faYoutubeSquare} />
+                <StyledIcon color="white" size="3x" icon={faYoutubeSquare} />
               </a>
             </IconGroup>
           </StyledTitle>

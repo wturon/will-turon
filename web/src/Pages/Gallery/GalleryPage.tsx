@@ -19,7 +19,7 @@ export const GalleryPage = (): JSX.Element => {
         </GalleryContainer>
       </Background>
     );
-  return <div>Test</div>;
+  return <div></div>;
 };
 
 const GalleryContainer = styled.div`
