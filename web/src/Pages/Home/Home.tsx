@@ -67,4 +67,5 @@ const IconGroup = styled.div`
 
 const StyledIcon = styled(FontAwesomeIcon)`
   padding-right: 15px;
+  box-sizing: content-box;
 `;
