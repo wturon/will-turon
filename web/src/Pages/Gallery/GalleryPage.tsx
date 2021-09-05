@@ -12,37 +12,70 @@ export const GalleryPage = (): JSX.Element => {
       <Background>
         <GalleryContainer>
           {getBlobData.data.map((picture, index) => (
-            <GalleryImage key={index} imageUri={picture.url}>
-              {picture.name}
+            <GalleryImage key={index}>
+              <img src={picture.url} alt={picture.name} />
             </GalleryImage>
           ))}
+          <li></li>
         </GalleryContainer>
       </Background>
     );
   return <div></div>;
 };
 
-const GalleryContainer = styled.div`
-  margin-left: 25px;
-  margin-right: 25px;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 25px;
+const GalleryContainer = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+
+  & li:last-child {
+    flex-grow: 10;
+  }
+
+  @media (max-aspect-ratio: 1/1) {
+    li {
+      height: 30vh;
+    }
+  }
+
+  @media (max-height: 600px) {
+    li {
+      height: 80vh;
+    }
+  }
+
+  @media (max-aspect-ratio: 1/1) and (max-width: 600px) {
+    ul {
+      flex-direction: row;
+    }
+
+    li {
+      height: auto;
+      width: 100%;
+    }
+    img {
+      width: 100%;
+      max-height: 75vh;
+      min-width: 0;
+    }
+  }
 `;
 
-export type GalleryImageProps = {
-  imageUri: string;
-};
+const GalleryImage = styled.li`
+  height: 40vh;
+  flex-grow: 1;
 
-const GalleryImage = styled.div<GalleryImageProps>`
-  height: auto;
-  width: 100%;
-  content: url(${(props) => props.imageUri});
+  & img {
+    max-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+    padding: 0.75rem;
+  }
 `;
 
 const Background = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: #2f3542;
 `;
