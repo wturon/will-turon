@@ -60,7 +60,7 @@ resource "azurerm_app_service" "will-turon-app-service-api" {
 }
 
 resource "azurerm_storage_account" "wt-storage-account" {
-  name                     = "wtstorageaccount"
+  name                     = "willturonstorageaccount"
   resource_group_name      = azurerm_resource_group.tf-wt-rg.name
   location                 = azurerm_resource_group.tf-wt-rg.location
   account_tier             = "Standard"

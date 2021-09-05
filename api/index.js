@@ -11,7 +11,7 @@ const {
 } = require("@azure/storage-blob");
 
 const listBlob = async () => {
-  const account = "wtstorageaccount";
+  const account = "willturonstorageaccount";
   const sharedKeyCredential = new StorageSharedKeyCredential(
     account,
     process.env.AZURE_STORAGE_CONNECTION_STRING
