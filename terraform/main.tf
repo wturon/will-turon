@@ -65,6 +65,7 @@ resource "azurerm_storage_account" "wt-storage-account" {
   location                 = azurerm_resource_group.tf-wt-rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  allow_blob_public_access = true
 }
 
 resource "azurerm_storage_container" "images" {
