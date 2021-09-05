@@ -2,10 +2,10 @@ name: deployment-api
 
 on:
   pull_request:
-      types: [closed]
-      branches: [main]
-      paths:
-        - './api'
+    types: [closed]
+    branches: [main]
+    paths:
+      - "./api"
   workflow_dispatch:
 
 env:
@@ -36,6 +36,19 @@ jobs:
           cd api
           npm install
           cd ..
+
+      - name: Set Web App ACR authentication
+        uses: Azure/appservice-settings@v1
+        with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        app-settings-json: |
+          [
+              {
+                  "name": "AZURE_STORAGE_CONNECTION_STRING",
+                  "value": "${{ secrets.AZURE_STORAGE_ACCESS_KEY }}",
+                  "slotSetting": false
+              },
+          ]
 
       - uses: azure/webapps-deploy@v2
         with:
