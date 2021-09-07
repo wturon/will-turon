@@ -5,16 +5,26 @@ import { Typography } from "./Typography";
 import { addOpacityToColor } from "../Theme/theme";
 
 export const Navbar = () => {
-  const [selectedNav, setSelectedNav] = useState("HOME");
+  const [selectedNav, setSelectedNav] = useState(window.location.pathname);
   const history = useHistory();
+
+  const handleNavClick = (route: string) => {
+    setSelectedNav(route);
+    history.push(route);
+  };
   return (
     <NavbarContainer>
-      <NavOption selectedNav={selectedNav} onClick={() => history.push("/")}>
+      <NavOption
+        selectedNav={selectedNav}
+        route={"/"}
+        onClick={() => handleNavClick("/")}
+      >
         Home
       </NavOption>
       <NavOption
         selectedNav={selectedNav}
-        onClick={() => history.push("/gallery")}
+        route={"/gallery"}
+        onClick={() => handleNavClick("/gallery")}
       >
         Gallery
       </NavOption>
@@ -25,25 +35,40 @@ export const Navbar = () => {
 const NavbarContainer = styled.div`
   margin-top: 2%;
   margin-left: 5%;
-  min-width: 12rem;
+  padding: 1rem;
+  min-width: 16rem;
+  border-radius: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   background-color: ${(props) =>
-    addOpacityToColor(props.theme.card.darkGrey, 0.5)};
+    addOpacityToColor(props.theme.card.darkGrey, 0.8)};
   backdrop-filter: blur(2px);
 `;
 
 type NavOptionProps = {
   selectedNav: string;
+  route: string;
 } & HTMLAttributes<HTMLDivElement>;
 
-const NavOption = ({ children, onClick, selectedNav }: NavOptionProps) => {
+const NavOption = ({
+  children,
+  onClick,
+  selectedNav,
+  route,
+}: NavOptionProps) => {
   return (
     <StyledNavOption onClick={onClick}>
-      <Typography size={"h4"} weight={"normal"}>
-        {children}
-      </Typography>
+      {selectedNav === route ? (
+        <GradientTypography size={"h4"} weight={"bold"}>
+          {children}
+        </GradientTypography>
+      ) : (
+        <Typography size={"h4"} weight={"normal"}>
+          {children}
+        </Typography>
+      )}
     </StyledNavOption>
   );
 };
@@ -57,4 +82,20 @@ const StyledNavOption = styled.div.attrs(
     cursor: pointer;
     opacity: 75%;
   }
+`;
+
+const GradientTypography = styled(Typography)`
+  background-image: linear-gradient(
+    45deg,
+    ${(props) => props.theme.gradient.primary},
+    ${(props) => props.theme.gradient.secondary}
+  );
+  background-size: 100%;
+  background-repeat: repeat;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 `;

@@ -38,10 +38,16 @@ export const Typography = ({
   weight,
   children,
   color = "primary",
+  className,
 }: TypographyProps) => {
   const convertedSize = DESKTOP_REM_TYPOGRAPHY[size];
   return (
-    <StyledTypography color={color} weight={weight} size={convertedSize}>
+    <StyledTypography
+      className={className}
+      color={color}
+      weight={weight}
+      size={convertedSize}
+    >
       {children}
     </StyledTypography>
   );
