@@ -2,7 +2,7 @@
 
 const config = {
   endpoint: "https://wt-test.documents.azure.com:443/",
-  key: "pAJB578sH18EvAeeWzF4eYHI41dwtg2A31OHemzVx4rUlC5DBqWBzJfUPGmhr6nMbqrqmEshOwvwsVeVdfv2SA==",
+  key: process.env.COSMOS_KEY,
   databaseId: "Tasks",
   containerId: "Items",
   partitionKey: { kind: "Hash", paths: ["/category"] },
