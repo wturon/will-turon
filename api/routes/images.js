@@ -1,8 +1,14 @@
 const express = require("express");
+const { listBlob } = require("../services/blobService");
+const ImageService = require("../services/ImageService");
 const router = express.Router();
 
 router.get("", (req, res) => {
-  return res.send("You got to get /images!");
+  listBlob()
+    .then((response) => {
+      res.status(200).send(response);
+    })
+    .catch((ex) => console.log(ex.message));
 });
 
 router.get("/items", (req, res) => {
@@ -15,11 +21,12 @@ router.get("/items", (req, res) => {
     query: "SELECT * from c",
   };
 
+  const imService = new ImageService();
   // read all items in the Items container
-  const { resources: items } = getContainers(querySpec);
-
-  items.forEach((item) => {
-    console.log(`${item.id} - ${item.description}`);
+  imService.getContainers(querySpec).then((items) => {
+    items.map((item) => {
+      console.log(`${item.id} - ${item.description}`);
+    });
   });
 });
 
@@ -50,10 +57,6 @@ const deleteItem = async (id, category) => {
 };
 
 router.delete("/items/:id", (req, res) => {
-  /**
-   * Delete item
-   * Pass the id and partition key value to delete the item
-   */
   deleteItem(req.params.id, "fun");
 });
 
