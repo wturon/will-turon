@@ -42,6 +42,10 @@ _Note that this SP will have contributer level access to your entire subscriptio
 
    Yeah I'm aware this seems redundant. I'm pretty sure you can use the same service principal for terraform and `azure/login@v1`.
 
+7. **COSMOS_KEY**
+
+   Access key for cosmos instance
+
 ---
 
 ## Infrastructure
