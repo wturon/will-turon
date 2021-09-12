@@ -14,32 +14,52 @@ export const Navbar = () => {
   };
   return (
     <NavbarContainer>
-      <NavOption
-        selectedNav={selectedNav}
-        route={"/"}
-        onClick={() => handleNavClick("/")}
-      >
-        Home
-      </NavOption>
-      <NavOption
-        selectedNav={selectedNav}
-        route={"/gallery"}
-        onClick={() => handleNavClick("/gallery")}
-      >
-        Gallery
-      </NavOption>
+      <NavBarOptionContainer>
+        <NavOption
+          selectedNav={selectedNav}
+          route={"/"}
+          onClick={() => handleNavClick("/")}
+        >
+          Home
+        </NavOption>
+        <NavOption
+          selectedNav={selectedNav}
+          route={"/gallery"}
+          onClick={() => handleNavClick("/gallery")}
+        >
+          Gallery
+        </NavOption>
+      </NavBarOptionContainer>
+      <AdminNavBarOptions>
+        <NavOption
+          selectedNav={selectedNav}
+          route={"/gallery"}
+          onClick={() => handleNavClick("/signin")}
+        >
+          Sign in
+        </NavOption>
+      </AdminNavBarOptions>
     </NavbarContainer>
   );
 };
 
-const NavbarContainer = styled.div`
-  margin-top: 2%;
-  margin-left: 5%;
-  padding: 1rem;
-  min-width: 16rem;
-  border-radius: 1rem;
+const AdminNavBarOptions = styled.div`
   display: flex;
-  justify-content: space-around;
+  margin-right: 2%;
+`;
+
+const NavBarOptionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2%;
+  min-width: 12rem;
+`;
+
+const NavbarContainer = styled.div`
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   background-color: ${(props) =>
