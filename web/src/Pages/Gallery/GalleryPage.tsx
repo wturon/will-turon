@@ -28,6 +28,7 @@ const GalleryContainer = styled.ul`
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
+  padding-left: 1%;
 
   & li:last-child {
     flex-grow: 10;
@@ -65,16 +66,19 @@ const GalleryContainer = styled.ul`
 const GalleryImage = styled.li`
   height: 40vh;
   flex-grow: 1;
+  margin-right: 2rem;
+  margin-top: 2rem;
 
   & img {
+    border-radius: 2rem;
+    box-shadow: 0 2px 3px rgb(0 0 0 / 24%);
     max-height: 100%;
     min-width: 100%;
     object-fit: cover;
     vertical-align: bottom;
-    padding: 0.75rem;
   }
 `;
 
 const Background = styled.div`
-  background-color: black;
+  background-color: whitesmoke;
 `;

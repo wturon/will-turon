@@ -1,47 +1,20 @@
 import styled from "styled-components";
 import { HTMLAttributes, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { Typography } from "./Typography";
 import { addOpacityToColor } from "../Theme/theme";
 
-export const Navbar = () => {
-  const [selectedNav, setSelectedNav] = useState(window.location.pathname);
-  const history = useHistory();
-
-  const handleNavClick = (route: string) => {
-    setSelectedNav(route);
-    history.push(route);
-  };
-  return (
-    <NavbarContainer>
-      <NavBarOptionContainer>
-        <NavOption
-          selectedNav={selectedNav}
-          route={"/"}
-          onClick={() => handleNavClick("/")}
-        >
-          Home
-        </NavOption>
-        <NavOption
-          selectedNav={selectedNav}
-          route={"/gallery"}
-          onClick={() => handleNavClick("/gallery")}
-        >
-          Gallery
-        </NavOption>
-      </NavBarOptionContainer>
-      <AdminNavBarOptions>
-        <NavOption
-          selectedNav={selectedNav}
-          route={"/gallery"}
-          onClick={() => handleNavClick("/signin")}
-        >
-          Sign in
-        </NavOption>
-      </AdminNavBarOptions>
-    </NavbarContainer>
-  );
-};
+export const Navbar = () => (
+  <NavbarContainer>
+    <NavBarOptionContainer>
+      <NavOption route={"/"}>Home</NavOption>
+      <NavOption route={"/gallery"}>Gallery</NavOption>
+    </NavBarOptionContainer>
+    <AdminNavBarOptions>
+      <NavOption route={"/signin"}>Sign in</NavOption>
+    </AdminNavBarOptions>
+  </NavbarContainer>
+);
 
 const AdminNavBarOptions = styled.div`
   display: flex;
@@ -68,19 +41,16 @@ const NavbarContainer = styled.div`
 `;
 
 type NavOptionProps = {
-  selectedNav: string;
   route: string;
 } & HTMLAttributes<HTMLDivElement>;
 
-const NavOption = ({
-  children,
-  onClick,
-  selectedNav,
-  route,
-}: NavOptionProps) => {
+const NavOption = ({ children, route }: NavOptionProps) => {
+  const history = useHistory();
+  const id = useLocation();
+  console.log(id);
   return (
-    <StyledNavOption onClick={onClick}>
-      {selectedNav === route ? (
+    <StyledNavOption onClick={() => history.push(route)}>
+      {id.pathname === route ? (
         <GradientTypography size={"h4"} weight={"bold"}>
           {children}
         </GradientTypography>
