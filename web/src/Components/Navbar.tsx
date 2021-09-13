@@ -36,7 +36,7 @@ const NavbarContainer = styled.div`
   align-items: center;
   position: fixed;
   background-color: ${(props) =>
-    addOpacityToColor(props.theme.card.darkGrey, 0.8)};
+    addOpacityToColor(props.theme.card.darkGrey, 0.9)};
   backdrop-filter: blur(2px);
 `;
 
