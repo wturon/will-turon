@@ -14,3 +14,13 @@ photosRouter.get("/", async (req: Request, res: Response) => {
     res.status(500).send(e.message);
   }
 });
+
+photosRouter.delete("/:id", async (req: Request, res: Response) => {
+  try {
+    const id: number = parseInt(req.params.id);
+    PhotoService.remove(id);
+    res.status(204).send("Photo deleted");
+  } catch (e: any) {
+    res.status(500).send(e.message);
+  }
+});
