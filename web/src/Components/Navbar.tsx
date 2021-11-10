@@ -1,20 +1,38 @@
 import styled from "styled-components";
-import { HTMLAttributes, useState } from "react";
+import { HTMLAttributes } from "react";
 import { useHistory, useLocation } from "react-router";
 import { Typography } from "./Typography";
 import { addOpacityToColor } from "../Theme/theme";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export const Navbar = () => (
-  <NavbarContainer>
-    <NavBarOptionContainer>
-      <NavOption route={"/"}>Home</NavOption>
-      <NavOption route={"/gallery"}>Gallery</NavOption>
-    </NavBarOptionContainer>
-    <AdminNavBarOptions>
-      <NavOption route={"/signin"}>Sign in</NavOption>
-    </AdminNavBarOptions>
-  </NavbarContainer>
-);
+export const Navbar = () => {
+  const { loginWithRedirect } = useAuth0();
+  return (
+    <NavbarContainer>
+      <NavBarOptionContainer>
+        <NavOption route={"/"}>Home</NavOption>
+        <NavOption route={"/gallery"}>Gallery</NavOption>
+      </NavBarOptionContainer>
+      <AdminNavBarOptions>
+        <Button onClick={() => loginWithRedirect()}>Sign in</Button>
+      </AdminNavBarOptions>
+    </NavbarContainer>
+  );
+};
+
+const Button = styled.div`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid #ffffff;
+  border-radius: 0.2rem;
+  color: #ffffff;
+  transition: all 0.05s;
+  :hover {
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+`;
 
 const AdminNavBarOptions = styled.div`
   display: flex;
