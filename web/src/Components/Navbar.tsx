@@ -6,7 +6,7 @@ import { addOpacityToColor } from "../Theme/theme";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Navbar = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
   return (
     <NavbarContainer>
       <NavBarOptionContainer>
@@ -14,7 +14,13 @@ export const Navbar = () => {
         <NavOption route={"/gallery"}>Gallery</NavOption>
       </NavBarOptionContainer>
       <AdminNavBarOptions>
-        <Button onClick={() => loginWithRedirect()}>Sign in</Button>
+        {!isAuthenticated ? (
+          <Button onClick={() => loginWithRedirect()}>Sign in</Button>
+        ) : (
+          <Button onClick={() => logout({ returnTo: window.location.origin })}>
+            Log Out
+          </Button>
+        )}
       </AdminNavBarOptions>
     </NavbarContainer>
   );
@@ -26,11 +32,15 @@ const Button = styled.div`
   border: 0.1rem solid #ffffff;
   border-radius: 0.2rem;
   color: #ffffff;
-  transition: all 0.05s;
+  transition: all 1.05s;
   :hover {
-    color: #000000;
     background-color: #ffffff;
     cursor: pointer;
+    background-image: linear-gradient(
+      45deg,
+      ${(props) => props.theme.gradient.primary},
+      ${(props) => props.theme.gradient.secondary}
+    );
   }
 `;
 
