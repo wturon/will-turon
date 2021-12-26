@@ -5,6 +5,8 @@ const WHITE = "#ffffff";
 const GREY = "#c2c2c2";
 
 const DARK_GREY = "#161616";
+const MEDIUM_GREY = "#2d3436";
+const LIGHT_GREY = "#636e72";
 
 export const addOpacityToColor = (hexCode: string, opacacy: number): string =>
   hexCode + Math.round(opacacy * 255).toString(16);
@@ -21,6 +23,8 @@ type Theme = {
   };
   card: {
     darkGrey: string;
+    mediumGrey: string;
+    lightGrey: string;
   };
 };
 
@@ -36,5 +40,7 @@ export const theme = (): Theme => ({
   },
   card: {
     darkGrey: DARK_GREY,
+    mediumGrey: MEDIUM_GREY,
+    lightGrey: LIGHT_GREY,
   },
 });
