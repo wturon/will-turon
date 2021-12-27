@@ -1,5 +1,6 @@
 export type EnvironmentVariables = {
   apiUri: string;
+  s3EndPoint: string;
 };
 
 export const getEnvironmentVariables = (): EnvironmentVariables => {
@@ -10,6 +11,8 @@ export const getEnvironmentVariables = (): EnvironmentVariables => {
 
   const EnvironmentVars: EnvironmentVariables = {
     apiUri: checkedApiURI,
+    s3EndPoint:
+      "https://7wf9w9e0q4.execute-api.us-east-2.amazonaws.com/default/getPresignedURL",
   };
   return EnvironmentVars;
 };

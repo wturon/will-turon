@@ -1,67 +1,37 @@
 import { useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import styled from "styled-components";
+import { uploadToBlob } from "./UploadPageService";
 
 export const UploadPage = (): JSX.Element => {
-  const [images, setImages] = useState([]);
-  const maxNumber = 69;
+  const [fileSelected, setFileSelected] = useState<File>();
 
-  const onChange = (
-    imageList: ImageListType,
-    addUpdateIndex: number[] | undefined
-  ) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setImages(imageList as never[]);
+  const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const fileList = e.target.files;
+    console.log("file list");
+    if (!fileList) return;
+    console.log(fileList[0]);
+    setFileSelected(fileList[0]);
+  };
+
+  const uploadFile = function (
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) {
+    if (fileSelected) {
+      uploadToBlob(fileSelected);
+    }
+    // line above ^ gives me the error below
   };
 
   return (
     <Card>
-      <ImageUploading
-        multiple
-        value={images}
-        onChange={onChange}
-        maxNumber={maxNumber}
-      >
-        {({
-          imageList,
-          onImageUpload,
-          onImageRemoveAll,
-          onImageUpdate,
-          onImageRemove,
-          isDragging,
-          dragProps,
-        }) => (
-          <div>
-            <StyledButton
-              style={isDragging ? { color: "red" } : undefined}
-              onClick={onImageUpload}
-              {...dragProps}
-            >
-              Click or Drop here
-            </StyledButton>
-            <StyledButton onClick={onImageRemoveAll}>
-              Remove all images
-            </StyledButton>
-            {imageList.map((image, index) => (
-              <ImageContainer key={index}>
-                <img src={image.dataURL} alt="" width="100" />
-                <StyledButton onClick={() => onImageUpdate(index)}>
-                  Update
-                </StyledButton>
-                <StyledButton onClick={() => onImageRemove(index)}>
-                  Remove
-                </StyledButton>
-              </ImageContainer>
-            ))}
-          </div>
-        )}
-      </ImageUploading>
-      {images.length > 0 && (
-        <StyledButton onClick={() => console.log(images)}>
+      <input type="file" multiple={false} onChange={handleImageChange} />
+      <StyledButton onClick={uploadFile}>Choose Picture</StyledButton>
+      {/* {images.length > 0 && (
+        <StyledButton onClick={() => uploadToBlob(images[0].file)}>
           Upload Images
         </StyledButton>
-      )}
+      )} */}
     </Card>
   );
 };
