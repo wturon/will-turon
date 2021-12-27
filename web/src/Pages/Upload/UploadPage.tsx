@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ImageUploading, { ImageListType } from "react-images-uploading";
 import styled from "styled-components";
 import { uploadToBlob } from "./UploadPageService";
 
@@ -20,18 +19,12 @@ export const UploadPage = (): JSX.Element => {
     if (fileSelected) {
       uploadToBlob(fileSelected);
     }
-    // line above ^ gives me the error below
   };
 
   return (
     <Card>
       <input type="file" multiple={false} onChange={handleImageChange} />
       <StyledButton onClick={uploadFile}>Choose Picture</StyledButton>
-      {/* {images.length > 0 && (
-        <StyledButton onClick={() => uploadToBlob(images[0].file)}>
-          Upload Images
-        </StyledButton>
-      )} */}
     </Card>
   );
 };
@@ -43,13 +36,6 @@ const Card = styled.div`
   align-items: center;
   height: 100vh;
 `;
-
-const ImageContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const StyledButton = styled.button`
   color: white;
   cursor: pointer;
