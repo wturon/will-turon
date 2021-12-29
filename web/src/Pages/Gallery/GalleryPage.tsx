@@ -11,9 +11,10 @@ export const GalleryPage = (): JSX.Element => {
     return (
       <Background>
         <GalleryContainer>
-          {getBlobData.data.map((picture, index) => (
+          {getBlobData.data.images.map((picture, index) => (
             <GalleryImage key={index}>
-              <img src={picture.url} alt={picture.name} />
+              {console.log(picture)}
+              <img src={picture.lowResUrl} alt={picture.key} />
             </GalleryImage>
           ))}
           <li></li>

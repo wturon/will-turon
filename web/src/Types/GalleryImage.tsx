@@ -1,4 +1,9 @@
+export type GalleryImages = {
+  images: GalleryImage[];
+};
+
 export type GalleryImage = {
-  name: string;
-  url: string;
+  key: string;
+  fullResUrl: string;
+  lowResUrl: string;
 };
