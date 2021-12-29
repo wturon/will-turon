@@ -10,7 +10,13 @@ import (
 )
 
 type Response struct {
-	Keys []string `json:"keys"`
+	Images []Image `json:"images"`
+}
+
+type Image struct {
+	Key        string `key:"key"`
+	FullResURL string `json:"fullResUrl"`
+	LowResURL  string `json:"lowResUrl"`
 }
 
 func handler() (Response, error) {
@@ -26,14 +32,19 @@ func handler() (Response, error) {
 		fmt.Println(err)
 	}
 
-	var keys []string
+	var images []Image
 	fmt.Println("output.Contents")
 	for _, item := range list.Contents {
-		keys = append(keys, *item.Key)
+		temp := Image{
+			Key:        *item.Key,
+			FullResURL: "https://wturon-full-res-images.s3.us-east-2.amazonaws.com/" + *item.Key,
+			LowResURL:  "https://wturon-full-res-images-resized.s3.us-east-2.amazonaws.com/resized-" + *item.Key,
+		}
+		images = append(images, temp)
 	}
 
 	return Response{
-		Keys: keys,
+		Images: images,
 	}, err
 
 }
