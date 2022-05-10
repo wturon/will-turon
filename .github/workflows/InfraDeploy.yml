@@ -4,26 +4,29 @@ on:
   push:
     branches: [main]
     paths:
-      - '/terraform/*'
-      - '/.github/workflows/InfraDeploy.yml'
+      - "/terraform/*"
+      - "/.github/workflows/InfraDeploy.yml"
   pull_request:
     types: [closed]
     branches: [main]
     paths:
-      - '/terraform/*'
-      - '/.github/workflows/InfraDeploy.yml'
+      - "/terraform/*"
+      - "/.github/workflows/InfraDeploy.yml"
   workflow_dispatch:
+
+permissions:
+  id-token: write # required for aws-actions/configure-aws-credentials
+  contents: read # required to checkout the code from the repo
 
 jobs:
   terraform:
     name: "Terraform"
     env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      AWS_REGION: "us-east-2"
+      TF_WORKING_DIR: "terraform"
+      TF_VAR_REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
     runs-on: ubuntu-latest
-    environment: production
+    environment: dev
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -32,34 +35,29 @@ jobs:
 
     steps:
       # Checkout the repository to the GitHub Actions runner
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Git clone the repository
+        uses: actions/checkout@v3
 
-      - name: "Terraform Init"
-        uses: hashicorp/terraform-github-actions@master
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: "init"
-          tf_actions_working_dir: "./terraform"
+          role-to-assume: arn:aws:iam::544999350219:role/github-actions-iam
+          aws-region: ${{ env.AWS_REGION }}
 
-      - name: "Terraform Validate"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: "validate"
-          tf_actions_working_dir: "./terraform"
+      - name: Terraform Init
+        uses: hashicorp/terraform-github-actions/init@v0.4.0
+        env:
+          TF_ACTION_WORKING_DIR: ${{ env.TF_WORKING_DIR }}
 
-      - name: "Terraform Plan"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: "plan"
-          tf_actions_working_dir: "./terraform"
+      - name: Terraform Validate
+        uses: hashicorp/terraform-github-actions/validate@v0.3.7
+        env:
+          TF_ACTION_WORKING_DIR: ${{ env.TF_WORKING_DIR }}
+
+      - name: Terraform Validate
+        uses: hashicorp/terraform-github-actions/validate@v0.3.7
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: "apply"
-          tf_actions_working_dir: "./terraform"
+        uses: hashicorp/terraform-github-actions/apply@v0.4.0
+        env:
+          TF_ACTION_WORKING_DIR: ${{ env.TF_WORKING_DIR }}
