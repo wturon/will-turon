@@ -82,4 +82,6 @@ const GalleryImage = styled.li`
 
 const Background = styled.div`
   background-color: whitesmoke;
+  padding-top: 3rem;
+  height: 100vh;
 `;
