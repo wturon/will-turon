@@ -33,6 +33,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: ${{ env.TF_WORKING_DIR }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -45,20 +46,22 @@ jobs:
           role-to-assume: arn:aws:iam::544999350219:role/github-actions-iam
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
       - name: Terraform Init
-        uses: hashicorp/terraform-github-actions/init@v0.4.0
-        env:
-          TF_ACTION_WORKING_DIR: ${{ env.TF_WORKING_DIR }}
+        id: init
+        run: terraform init
 
       - name: Terraform Validate
-        uses: hashicorp/terraform-github-actions/validate@v0.3.7
-        env:
-          TF_ACTION_WORKING_DIR: ${{ env.TF_WORKING_DIR }}
-
-      - name: Terraform Validate
-        uses: hashicorp/terraform-github-actions/validate@v0.3.7
+        id: validate
+        run: terraform validate -no-color
 
       - name: Terraform Apply
-        uses: hashicorp/terraform-github-actions/apply@v0.4.0
-        env:
-          TF_ACTION_WORKING_DIR: ${{ env.TF_WORKING_DIR }}
+        id: apply
+        run: terraform apply -auto-approve
