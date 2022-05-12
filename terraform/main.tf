@@ -5,11 +5,12 @@ resource "aws_amplify_app" "frontend" {
 
   # The default build_spec added by the Amplify Console for React.
   build_spec = <<-EOT
-    version: 0.1
+   version: 0.1
     frontend:
       phases:
         preBuild:
           commands:
+            - pwd
             - cd web
             - npm install
             - cd ..
@@ -17,6 +18,8 @@ resource "aws_amplify_app" "frontend" {
           commands:
             - cd web
             - npm run build
+            - pwd
+            - ls
             - cd ..
       artifacts:
         baseDirectory: web/build
