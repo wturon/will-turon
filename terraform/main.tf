@@ -19,7 +19,7 @@ resource "aws_amplify_app" "frontend" {
             - npm run build
             - cd ..
       artifacts:
-        baseDirectory: build
+        baseDirectory: web/build
         files:
           - '**/*'
       cache:
