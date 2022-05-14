@@ -49,3 +49,12 @@ resource "aws_amplify_branch" "main" {
   framework   = "React"
   stage       = "PRODUCTION"
 }
+
+resource "aws_route53_zone" "zone_apex" {
+  name    = "willturon.com"
+  comment = "Hosted Zone for willturon.com"
+
+  tags {
+    Name = "example.com"
+  }
+}
