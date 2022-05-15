@@ -5,7 +5,7 @@ resource "aws_amplify_app" "frontend" {
 
   # The default build_spec added by the Amplify Console for React.
   build_spec = <<-EOT
-   version: 0.1
+    version: 0.1
     frontend:
       phases:
         preBuild:
