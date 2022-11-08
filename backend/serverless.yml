@@ -40,5 +40,4 @@ resources:
     AdminApp: ${file(./resources/AdminApp.yml)}
     AmplifyBranch: ${file(./resources/AmplifyBranch.yml)}
     AmplifyDomainAssociation: ${file(./resources/AmplifyDomainAssociation.yml)}
-    RateConfBucket: ${file(./resources/RateConfBucket.yml)}
     Route53HostedZone: ${file(./resources/Route53HostedZone.yml)}
