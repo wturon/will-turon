@@ -1,0 +1,4 @@
+Type: AWS::Amplify::Domain
+Properties:
+  AppId: !GetAtt AdminApp.AppId
+  DomainName: willturon.com

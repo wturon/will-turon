@@ -1,0 +1,5 @@
+Type: AWS::Route53::HostedZone
+Properties:
+  Name: willturon.com
+  HostedZoneConfig:
+    Comment: Hosted zone from willturon.com

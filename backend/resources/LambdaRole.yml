@@ -1,0 +1,63 @@
+Type: AWS::IAM::Role
+Properties:
+  AssumeRolePolicyDocument:
+    Statement:
+      - Effect: Allow
+        Action: sts:AssumeRole
+        Principal:
+          Service: lambda.amazonaws.com
+    Version: '2012-10-17'
+  Policies:
+    - PolicyName: CanLog
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogStream
+              - logs:CreateLogGroup
+              - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+    - PolicyName: CanExecute
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - lambda:InvokeFunction
+              - ec2:CreateNetworkInterface
+              - ec2:DeleteNetworkInterface
+              - ec2:DetachNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - 'xray:PutTraceSegments'
+              - 'xray:PutTelemetryRecords'
+            Resource: '*'
+    - PolicyName: SecretsManagerReadWrite
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:CreateSecret
+              - secretsmanager:DeleteSecret
+              - secretsmanager:PutSecretValue
+            Resource: '*'
+    - PolicyName: DynamoDBReadWrite
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:*
+            Resource: '*'
+    - PolicyName: S3GetAndUploadFile
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+              - s3:ListBucket
+            Resource: '*'

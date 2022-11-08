@@ -1,0 +1,9 @@
+Type: AWS::Amplify::Branch
+Properties:
+  AppId: !GetAtt AdminApp.AppId
+  BranchName: main
+  Stage: PRODUCTION
+  EnableAutoBuild: true
+  EnvironmentVariables:
+    - Name: REACT_APP_ENVIRONMENT
+      Value: prod

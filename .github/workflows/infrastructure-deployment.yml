@@ -1,0 +1,67 @@
+name: "infrastructure-deployment"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/backend/**"
+      - "**/.github/workflows/infrastructure-deployment.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write # required for aws-actions/configure-aws-credentials
+  contents: read # required to checkout the code from the repo
+
+jobs:
+  deploy:
+    name: "deploy"
+    env:
+      AWS_REGION: "us-east-2"
+      REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: backend
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.5
+
+      # extract branch name on pull request
+      - name: Set environment
+        run: BRANCH=${{ steps.branch-name.outputs.current_branch }}
+
+      - name: Configure AWS credentials from Dev account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::421028574151:role/github-actions-iam
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: backend
+
+      - name: Create certificate (if needed)
+        run:
+          node ./node_modules/serverless/bin/serverless.js create-cert --stage ${{
+          steps.branch-name.outputs.current_branch }}
+        env:
+          SLS_DEBUG: 1
+        working-directory: backend
+
+      - name: Deploy serverless
+        run:
+          node ./node_modules/serverless/bin/serverless.js deploy --verbose --stage ${{
+          steps.branch-name.outputs.current_branch }}
+        env:
+          SLS_DEBUG: 1
+        working-directory: backend

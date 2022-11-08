@@ -1,0 +1,44 @@
+# The `org` and `app` fields were added by serverless dashboard and can be modified if we change authentication methods
+# test
+service: backend
+frameworkVersion: "3"
+
+# these two lines are required for serverless offline to reference a local .env file
+useDotenv: true
+variablesResolutionMode: 20210326
+
+plugins:
+  # the order of these plugins is important
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-2
+  iam:
+    role: LambdaRole
+  environment:
+    BRANCH_NAME: ${opt:stage}
+  httpApi:
+    cors: true
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    ignoreJWTSignature: true
+
+functions:
+resources:
+  Conditions:
+    IsProd:
+      Fn::Equals:
+        - ${opt:stage}
+        - prod
+  Resources:
+    # Don't comment out the below resources! (If you do comment them out, just make sure to uncomment them before deploying)
+    AdminApp: ${file(./resources/AdminApp.yml)}
+    AmplifyBranch: ${file(./resources/AmplifyBranch.yml)}
+    AmplifyDomainAssociation: ${file(./resources/AmplifyDomainAssociation.yml)}
+    RateConfBucket: ${file(./resources/RateConfBucket.yml)}
+    Route53HostedZone: ${file(./resources/Route53HostedZone.yml)}
