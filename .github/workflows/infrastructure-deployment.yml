@@ -43,7 +43,7 @@ jobs:
       - name: Configure AWS credentials from Dev account
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::421028574151:role/github-actions-iam
+          role-to-assume: arn:aws:iam::544999350219:role/github-actions-iam
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Install dependencies
