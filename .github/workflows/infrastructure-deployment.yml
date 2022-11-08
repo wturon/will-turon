@@ -51,9 +51,7 @@ jobs:
         working-directory: backend
 
       - name: Deploy serverless
-        run:
-          node ./node_modules/serverless/bin/serverless.js deploy --verbose --stage ${{
-          steps.branch-name.outputs.current_branch }}
+        run: node ./node_modules/serverless/bin/serverless.js deploy --verbose --stage prod
         env:
           SLS_DEBUG: 1
         working-directory: backend
