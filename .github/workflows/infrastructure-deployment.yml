@@ -50,14 +50,6 @@ jobs:
         run: npm install
         working-directory: backend
 
-      - name: Create certificate (if needed)
-        run:
-          node ./node_modules/serverless/bin/serverless.js create-cert --stage ${{
-          steps.branch-name.outputs.current_branch }}
-        env:
-          SLS_DEBUG: 1
-        working-directory: backend
-
       - name: Deploy serverless
         run:
           node ./node_modules/serverless/bin/serverless.js deploy --verbose --stage ${{
