@@ -50,6 +50,10 @@ jobs:
         run: npm install
         working-directory: infra
 
+      - name: Print Directory
+        run: pwd
+        working-directory: infra
+
       - name: Deploy serverless
         run: node ./node_modules/serverless/bin/serverless.js deploy --verbose --stage prod
         env:
