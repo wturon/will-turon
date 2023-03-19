@@ -1,6 +1,6 @@
 Type: AWS::Amplify::Branch
 Properties:
-  AppId: !GetAtt AdminApp.AppId
+  AppId: !GetAtt AmplifyApp.AppId
   BranchName: main
   Stage: PRODUCTION
   EnableAutoBuild: true
