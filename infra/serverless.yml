@@ -1,7 +1,5 @@
-# The `org` and `app` fields were added by serverless dashboard and can be modified if we change authentication methods
-# test
 service: backend
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 # these two lines are required for serverless offline to reference a local .env file
 useDotenv: true
@@ -20,8 +18,6 @@ provider:
     role: LambdaRole
   environment:
     BRANCH_NAME: ${opt:stage}
-  httpApi:
-    cors: true
 
 custom:
   serverless-offline:
