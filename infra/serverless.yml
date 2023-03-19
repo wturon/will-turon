@@ -29,6 +29,12 @@ custom:
     ignoreJWTSignature: true
 
 functions:
+  get-generic:
+    handler: handlers/generic-handler.getAll
+    events:
+      - httpApi:
+          path: /sample
+          method: get
 resources:
   Conditions:
     IsProd:

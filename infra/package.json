@@ -3,12 +3,12 @@
     "local": "export AWS_PROFILE=PERSONAL && serverless offline --stage dev"
   },
   "dependencies": {
-    "dotenv": "^16.0.1",
-    "serverless": "^3.28.1"
+    "aws-lambda": "^1.0.7",
+    "serverless": "^3.26.0",
+    "serverless-offline": "^12.0.4"
   },
   "devDependencies": {
-    "serverless-offline": "^9.1.6",
-    "serverless-plugin-typescript": "^2.1.2",
-    "typescript": "^4.7.4"
+    "serverless-plugin-typescript": "^2.1.4",
+    "typescript": "^4.9.4"
   }
 }
