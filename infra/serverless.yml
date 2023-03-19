@@ -44,3 +44,4 @@ resources:
     # AmplifyDomainAssociation: ${file(./resources/AmplifyDomainAssociation.yml)}
     # Route53HostedZone: ${file(./resources/Route53HostedZone.yml)}
     AmplifyRole: ${file(./resources/AmplifyRole.yml)}
+    LambdaRole: ${file(./resources/LambdaRole.yml)}
