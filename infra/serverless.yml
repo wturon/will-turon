@@ -38,6 +38,7 @@ resources:
   Resources:
     # Don't comment out the below resources! (If you do comment them out, just make sure to uncomment them before deploying)
     AdminApp: ${file(./resources/AdminApp.yml)}
-    AmplifyBranch: ${file(./resources/AmplifyBranch.yml)}
-    AmplifyDomainAssociation: ${file(./resources/AmplifyDomainAssociation.yml)}
-    Route53HostedZone: ${file(./resources/Route53HostedZone.yml)}
+    # AmplifyBranch: ${file(./resources/AmplifyBranch.yml)}
+    # AmplifyDomainAssociation: ${file(./resources/AmplifyDomainAssociation.yml)}
+    # Route53HostedZone: ${file(./resources/Route53HostedZone.yml)}
+    AmplifyRole: ${file(./resources/AmplifyRole.yml)}

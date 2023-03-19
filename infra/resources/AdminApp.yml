@@ -3,31 +3,27 @@ Properties:
   Name: admin-app-${opt:stage}
   Repository: https://github.com/wturon/will-turon
   AccessToken: ${env:REPO_ACCESS_TOKEN, ''}
+  IAMServiceRole: !GetAtt AmplifyRole.Arn
+  EnvironmentVariables:
+    - Name: AMPLIFY_MONOREPO_APP_ROOT
+      Value: web
+    - Name: AMPLIFY_DIFF_DEPLOY
+      Value: false
   BuildSpec: |-
     version: 0.1
     frontend:
       phases:
         preBuild:
           commands:
-            - pwd
-            - cd web
-            - npm install
-            - cd ..
+            - npm ci
         build:
           commands:
-            - cd web
             - npm run build
-            - pwd
-            - ls
-            - cd ..
       artifacts:
-        baseDirectory: web/build
+        baseDirectory: .next
         files:
           - "**/*"
       cache:
         paths:
           - node_modules/**/*
-  CustomRules:
-    - Source: </^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>
-      Status: 200
-      Target: /index.html
+    appRoot: web
