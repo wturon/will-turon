@@ -51,7 +51,7 @@ jobs:
         working-directory: infra
 
       - name: Deploy serverless
-        run: node ./node_modules/serverless/bin/serverless.js deploy --verbose --stage prod
+        run: node sls deploy --verbose --stage prod
         env:
           SLS_DEBUG: 1
         working-directory: infra
