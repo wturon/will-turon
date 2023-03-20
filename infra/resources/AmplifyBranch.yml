@@ -4,6 +4,7 @@ Properties:
   BranchName: main
   Stage: PRODUCTION
   EnableAutoBuild: true
+  Framework: 'Next.js - SSR'
   EnvironmentVariables:
     - Name: NEXT_PUBLIC_ENV
       Value: prod
