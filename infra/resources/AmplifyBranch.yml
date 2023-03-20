@@ -5,5 +5,5 @@ Properties:
   Stage: PRODUCTION
   EnableAutoBuild: true
   EnvironmentVariables:
-    - Name: REACT_APP_ENVIRONMENT
+    - Name: NEXT_PUBLIC_ENV
       Value: prod
