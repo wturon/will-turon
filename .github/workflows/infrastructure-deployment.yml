@@ -1,12 +1,12 @@
-name: "infrastructure-deployment"
+name: 'infrastructure-deployment'
 
 on:
   push:
     branches:
       - main
     paths:
-      - "**/infra/**"
-      - "**/.github/workflows/infrastructure-deployment.yml"
+      - '**/infra/**'
+      - '**/.github/workflows/infrastructure-deployment.yml'
   workflow_dispatch:
 
 permissions:
@@ -15,9 +15,9 @@ permissions:
 
 jobs:
   deploy:
-    name: "deploy"
+    name: 'deploy'
     env:
-      AWS_REGION: "us-east-2"
+      AWS_REGION: 'us-east-2'
       REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
     runs-on: ubuntu-latest
 
