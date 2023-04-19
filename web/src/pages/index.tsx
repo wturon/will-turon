@@ -11,9 +11,10 @@ export default function Home() {
         <title>Will's personal website</title>
         <meta name="Welcome to Will's personal website" key="desc" />
       </Head>
-      <div className="flex items-center gap-8">
-        <Image className="rounded-2xl	" src="/me.png" alt="Will" width={200} height={200} />
-        <h1 className="text-5xl font-bold text-white">Hi, I'm Will! 👋🏻</h1>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-5xl font-bold text-white">About</h1>
+        <h1 className="text-5xl font-bold text-white">Work</h1>
+        <h1 className="text-5xl font-bold text-white">Photos</h1>
       </div>
     </div>
   )
