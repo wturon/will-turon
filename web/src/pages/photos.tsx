@@ -18,14 +18,16 @@ export default function Home(props: any) {
   console.log('PROPS', props)
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="flex h-full flex-wrap items-center justify-center gap-6">
       {props.photos.map((photo: any) => (
-        <Image
-          src={'https:' + photo.fields.photo.fields.file.url}
-          height={photo.fields.photo.fields.file.details.image.height}
-          width={photo.fields.photo.fields.file.details.image.width}
-          alt={photo.fields.photo.fields.file.fileName}
-        />
+        <div className="max-w-md">
+          <Image
+            src={'https:' + photo.fields.photo.fields.file.url}
+            height={photo.fields.photo.fields.file.details.image.height}
+            width={photo.fields.photo.fields.file.details.image.width}
+            alt={photo.fields.photo.fields.file.fileName}
+          />
+        </div>
       ))}
     </div>
   )
